@@ -93,7 +93,8 @@ Ghostty 与 Zellij 有意保留两层能力：Ghostty 处理临时 GUI 窗口，
 - 主题为 Kanagawa Wave，背景不透明，启用斜体注释和 undercurl。
 - 插件更新检查开启但不弹出通知。
 - `lazy-lock.json` 锁定插件 commit，保证环境可复现。
-- Markdown 保存时禁用自动格式化，但仍保留诊断、渲染、预览与手动格式化。
+- Markdown 和 MDX 不运行 markdownlint，保存时也不自动格式化；仍保留
+  marksman、渲染、预览与手动格式化。
 
 ### 语言支持
 
@@ -110,7 +111,7 @@ Ghostty 与 Zellij 有意保留两层能力：Ghostty 处理临时 GUI 窗口，
 | HTML | html-lsp、Emmet | Prettier |
 | CSS、SCSS、LESS | css-lsp、Emmet | Biome 支持时用 Biome，否则 Prettier |
 | JSON | jsonls、SchemaStore | Biome 或 Prettier |
-| Markdown | marksman、markdownlint、render-markdown | 仅手动格式化 |
+| Markdown | marksman、render-markdown | 仅手动格式化，不运行 markdownlint |
 
 React 不使用单独 LSP：`.jsx` 与 `.tsx` 分别由 JavaScript/TypeScript、
 vtsls、Treesitter 和 Emmet 共同覆盖。
@@ -128,8 +129,8 @@ vtsls、Treesitter 和 Emmet 共同覆盖。
 ### 外部工具与运行时
 
 Mason 管理编辑器工具，包括 clangd、clang-format、jdtls、Pyright、Ruff、
-gopls、rust-analyzer、vtsls、Vue/Astro/HTML/CSS/JSON LSP、Emmet、Prettier、
-markdownlint 和 marksman。
+gopls、rust-analyzer、vtsls、Vue/Astro/HTML/CSS/JSON LSP、Emmet、Prettier 和
+marksman。LazyVim Markdown extra 默认声明的 markdownlint-cli2 已从自动安装列表移除。
 
 Mason 不替代语言运行时。编译或运行代码仍需要系统安装相应工具链：
 

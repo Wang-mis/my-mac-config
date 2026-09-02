@@ -7,8 +7,8 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
--- Prose should never be rewritten implicitly. Markdown diagnostics, rendering,
--- preview, and explicit formatting remain available.
+-- Prose should never be rewritten implicitly. Markdown rendering, preview,
+-- and explicit formatting remain available.
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown", "markdown.mdx" },
   callback = function(event)
