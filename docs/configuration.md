@@ -93,8 +93,8 @@ Ghostty 与 Zellij 有意保留两层能力：Ghostty 处理临时 GUI 窗口，
 - 主题为 Kanagawa Wave，背景不透明，启用斜体注释和 undercurl。
 - 插件更新检查开启但不弹出通知。
 - `lazy-lock.json` 锁定插件 commit，保证环境可复现。
-- Markdown 和 MDX 不运行 markdownlint，保存时也不自动格式化；仍保留
-  marksman、渲染、预览与手动格式化。
+- Markdown 和 MDX 不运行 markdownlint，关闭英文拼写检查，保存时也不自动格式化；
+  仍保留 marksman、渲染、预览与手动格式化。
 
 ### 语言支持
 

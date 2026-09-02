@@ -12,6 +12,7 @@
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown", "markdown.mdx" },
   callback = function(event)
+    vim.opt_local.spell = false
     vim.b[event.buf].autoformat = false
   end,
 })
