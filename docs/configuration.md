@@ -26,6 +26,8 @@ Ghostty 与 Zellij 有意保留两层能力：Ghostty 处理临时 GUI 窗口，
 - 选中内容自动复制到系统剪贴板；右键自动选择复制或粘贴。
 - 粘贴保护和 bracketed paste 均已启用。
 - Shell integration 自动检测 Zsh，启用 cursor、sudo、title、ssh-env、ssh-terminfo 和 path。
+- 解除 Ghostty 默认的 `Cmd+Shift+P` 与 `Cmd+Shift+F`，将它们传递给
+  Neovim 的命令面板和项目搜索。
 - 后台命令运行超过 30 秒且窗口未聚焦时发送系统通知。
 - 全局快速终端从鼠标所在屏幕顶部展开并自动隐藏。
 
@@ -64,7 +66,8 @@ Ghostty 与 Zellij 有意保留两层能力：Ghostty 处理临时 GUI 窗口，
 活动配置：`~/.config/zellij/config.kdl`
 
 - 使用内置 `kanagawa` 主题。
-- 默认进入 Normal 模式，保留完整的模式化键位。
+- 默认进入 Normal 模式，保留完整的模式化键位；Scroll 与 Move 模式入口
+  分别使用 `Alt+S` 与 `Alt+M`，避免占用 Neovim 的 `Ctrl+S` 与 `Ctrl+H`。
 - 强制关闭终端时执行 detach，不结束会话。
 - 开启会话序列化，用于恢复标签页、窗格、工作目录和命令信息。
 - scrollback editor 固定为 `/opt/homebrew/bin/nvim`。
@@ -95,6 +98,8 @@ Ghostty 与 Zellij 有意保留两层能力：Ghostty 处理临时 GUI 窗口，
 - `lazy-lock.json` 锁定插件 commit，保证环境可复现。
 - Markdown 和 MDX 不运行 markdownlint，关闭英文拼写检查，保存时也不自动格式化；
   仍保留 marksman、渲染、预览与手动格式化。
+- 提供 VS Code 风格的 `Cmd`、功能键与 `Alt` 快捷键别名，同时保留 LazyVim
+  原生 Leader 键体系。
 
 ### 语言支持
 

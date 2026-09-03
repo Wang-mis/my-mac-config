@@ -54,8 +54,8 @@
 | `Ctrl+P` | Pane 模式 |
 | `Ctrl+T` | Tab 模式 |
 | `Ctrl+N` | Resize 模式 |
-| `Ctrl+H` | Move 模式 |
-| `Ctrl+S` | Scroll 模式 |
+| `Alt+M` | Move 模式 |
+| `Alt+S` | Scroll 模式 |
 | `Ctrl+O` | Session 模式 |
 | `Ctrl+B` | tmux 兼容模式 |
 | `Ctrl+G` | 锁定/解锁键位 |
@@ -105,7 +105,7 @@
 
 | 快捷键 | 操作 |
 | --- | --- |
-| `Ctrl+S` 后 `s` | 输入搜索内容 |
+| `Alt+S` 后 `s` | 输入搜索内容 |
 | Scroll 模式 `e` | 在 Neovim 中编辑回滚内容 |
 | Scroll 模式 `j/k` | 向下/向上滚动 |
 | Scroll 模式 `d/u` | 向下/向上滚动半页 |
@@ -131,6 +131,10 @@
 
 | 快捷键 | 操作 |
 | --- | --- |
+| `Cmd+P` | VS Code 风格：在项目根目录查找文件 |
+| `Cmd+Shift+P` | VS Code 风格：打开命令面板 |
+| `Cmd+Shift+F` | VS Code 风格：在项目中全文搜索 |
+| `Cmd+B` | VS Code 风格：显示或隐藏项目文件浏览器 |
 | `<Space><Space>` / `<Space>ff` | 在项目根目录查找文件 |
 | `<Space>fF` | 在当前目录查找文件 |
 | `<Space>fg` | 查找 Git 已跟踪文件 |
@@ -148,6 +152,10 @@
 
 | 快捷键 | 操作 |
 | --- | --- |
+| `Cmd+S` | VS Code 风格：保存文件 |
+| `Cmd+/` | VS Code 风格：注释或取消注释 |
+| `Alt+Z` | VS Code 风格：切换自动换行 |
+| `Shift+Alt+↑/↓` | VS Code 风格：向上/向下复制当前行或选区 |
 | `Ctrl+S` | 保存文件 |
 | `S` | Flash Treesitter 跳转 |
 | `s` | Flash 精确跳转 |
@@ -169,6 +177,11 @@
 
 | 快捷键 | 操作 |
 | --- | --- |
+| `Cmd+.` | VS Code 风格：Code Action / Quick Fix |
+| `F2` | VS Code 风格：重命名符号 |
+| `F12` | VS Code 风格：跳到定义 |
+| `Shift+F12` | VS Code 风格：查找引用 |
+| `Cmd+Shift+O` | VS Code 风格：当前文件符号 |
 | `gd` | 跳到定义 |
 | `gr` | 查找引用 |
 | `gI` | 跳到实现 |
