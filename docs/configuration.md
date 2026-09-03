@@ -1,6 +1,8 @@
 # macOS 终端开发环境配置
 
-本文档描述一套以 Ghostty、Zsh、Zellij、Yazi 和 LazyVim 为核心的 macOS 开发环境。Neovim 配置由本仓库管理；其他工具的活动配置仍位于用户目录，并在本文中记录其行为。
+本文档描述一套以 Ghostty、Zsh、Zellij、Yazi 和 LazyVim 为核心的 macOS
+开发环境。Neovim 配置由本仓库管理；其他工具的活动配置仍位于用户目录，
+并在本文中记录其行为。
 
 ## 配置架构
 
@@ -28,6 +30,8 @@ Ghostty 与 Zellij 有意保留两层能力：Ghostty 处理临时 GUI 窗口，
 - Shell integration 自动检测 Zsh，启用 cursor、sudo、title、ssh-env、ssh-terminfo 和 path。
 - 解除 Ghostty 默认的 `Cmd+Shift+P` 与 `Cmd+Shift+F`，将它们传递给
   Neovim 的命令面板和项目搜索。
+- 将 `Shift+Enter`、`Cmd+Shift+Enter`、`Cmd+H` 和 `Cmd+L` 编码为
+  Neovim 可区分的 CSI 序列；`Cmd+Alt+Enter` 用于切换 Ghostty 分屏最大化。
 - 后台命令运行超过 30 秒且窗口未聚焦时发送系统通知。
 - 全局快速终端从鼠标所在屏幕顶部展开并自动隐藏。
 
@@ -100,6 +104,10 @@ Ghostty 与 Zellij 有意保留两层能力：Ghostty 处理临时 GUI 窗口，
   仍保留 marksman、渲染、预览与手动格式化。
 - 提供 VS Code 风格的 `Cmd`、功能键与 `Alt` 快捷键别名，同时保留 LazyVim
   原生 Leader 键体系。
+- 使用 tabout.nvim 跳出括号、引号和标签；Blink.cmp 先处理 snippet 与 AI
+  建议，再将 Tab 交给 TabOut，无法跳出时执行普通缩进。
+- Insert 模式支持在当前行上方或下方插入新行，以及移动到物理行首、行尾。
+- Visual 模式使用 `Tab` 与 `Shift+Tab` 缩进或取消缩进，并保持当前选区。
 
 ### 语言支持
 
@@ -160,4 +168,5 @@ nvim --headless "+Lazy! sync" +qa
 
 ### 更新 Neovim
 
-在 Neovim 中执行 `:Lazy` 查看、更新和清理插件，执行 `:Mason` 查看语言服务器与格式器。更新完成后检查并提交 `nvim/lazy-lock.json`。
+在 Neovim 中执行 `:Lazy` 查看、更新和清理插件，执行 `:Mason` 查看语言服务器
+与格式器。更新完成后检查并提交 `nvim/lazy-lock.json`。

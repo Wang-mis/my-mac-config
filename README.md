@@ -6,9 +6,12 @@ macOS 终端开发环境说明与 Neovim 配置源。
 
 - [`docs/configuration.md`](docs/configuration.md)：终端、Shell、命令行工具、
   Zellij、Yazi 与 LazyVim 的完整配置说明。
-- [`docs/shortcuts.md`](docs/shortcuts.md)：Ghostty、Zellij、Yazi、Shell 和 LazyVim 常用快捷键速查。
-- [`nvim/`](nvim/)：由 Git 管理的 LazyVim 配置，设计为链接到 `~/.config/nvim`。
-- [`scripts/link-nvim.sh`](scripts/link-nvim.sh)：在新机器上备份已有配置并建立 Neovim 配置链接。
+- [`docs/shortcuts.md`](docs/shortcuts.md)：Ghostty、Zellij、Yazi、Shell 和
+  LazyVim 常用快捷键速查。
+- [`nvim/`](nvim/)：由 Git 管理的 LazyVim 配置，设计为链接到
+  `~/.config/nvim`。
+- [`scripts/link-nvim.sh`](scripts/link-nvim.sh)：在新机器上备份已有配置并
+  建立 Neovim 配置链接。
 
 ## 安装 Neovim 配置
 
@@ -19,11 +22,14 @@ cd ~/Documents/Programs/my-mac-config
 nvim --headless "+Lazy! sync" +qa
 ```
 
-脚本不会直接删除已有的 `~/.config/nvim`。如果目标已经存在且不是本仓库的链接，它会先将目标重命名为带时间戳的备份目录。
+脚本不会直接删除已有的 `~/.config/nvim`。如果目标已经存在且不是本仓库的
+链接，它会先将目标重命名为带时间戳的备份目录。
 
 ## 维护
 
-修改 `~/.config/nvim` 会直接修改本仓库的 `nvim/`，因为活动配置通过符号链接指向这里。更新插件后，应一并提交 `nvim/lazy-lock.json`，确保其他机器复现相同插件版本。
+修改 `~/.config/nvim` 会直接修改本仓库的 `nvim/`，因为活动配置通过符号
+链接指向这里。更新插件后，应一并提交 `nvim/lazy-lock.json`，确保其他机器
+复现相同插件版本。
 
 ```bash
 git status

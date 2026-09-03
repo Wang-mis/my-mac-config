@@ -24,6 +24,7 @@
 | `Cmd+W` | 关闭当前 surface |
 | `Cmd+方向键` | 切换 Ghostty 分屏焦点 |
 | `Cmd+Shift+↑/↓` | 跳到上一个/下一个命令提示符 |
+| `Cmd+Alt+Enter` | 最大化或恢复当前 Ghostty 分屏 |
 | 鼠标选中 | 自动复制到系统剪贴板 |
 | 右键 | 根据当前状态复制或粘贴 |
 
@@ -156,6 +157,13 @@
 | `Cmd+/` | VS Code 风格：注释或取消注释 |
 | `Alt+Z` | VS Code 风格：切换自动换行 |
 | `Shift+Alt+↑/↓` | VS Code 风格：向上/向下复制当前行或选区 |
+| Insert `Shift+Enter` | 在当前行下方插入新行 |
+| Insert `Cmd+Shift+Enter` | 在当前行上方插入新行 |
+| Insert `Cmd+H/L` | 移动到物理行首/行尾 |
+| Insert `Tab` | snippet/AI 优先，否则跳出括号、引号、标签或标点 |
+| Insert `Shift+Tab` | 跳到上一个 snippet、反向跳出或取消缩进 |
+| Visual `Tab` | 缩进选中行并保持选区 |
+| Visual `Shift+Tab` | 取消选中行缩进并保持选区 |
 | `Ctrl+S` | 保存文件 |
 | `S` | Flash Treesitter 跳转 |
 | `s` | Flash 精确跳转 |

@@ -23,3 +23,14 @@ map("n", "<M-S-Down>", "<cmd>copy .<cr>", { desc = "Duplicate Line Down" })
 map("n", "<M-S-Up>", "<cmd>copy .-1<cr>", { desc = "Duplicate Line Up" })
 map("x", "<M-S-Down>", ":copy '><cr>gv", { desc = "Duplicate Selection Down" })
 map("x", "<M-S-Up>", ":copy '<-1<cr>gv", { desc = "Duplicate Selection Up" })
+
+-- VS Code-style insert-mode cursor and line actions. Ghostty sends the
+-- corresponding modified keys with the Kitty keyboard protocol.
+map("i", "<S-CR>", "<Esc>o", { desc = "Insert Line Below" })
+map("i", "<D-S-CR>", "<Esc>O", { desc = "Insert Line Above" })
+map("i", "<D-h>", "<Home>", { desc = "Go to Line Start" })
+map("i", "<D-l>", "<End>", { desc = "Go to Line End" })
+
+-- Keep the selected lines active so repeated indentation stays convenient.
+map("x", "<Tab>", ">gv", { desc = "Indent Selection" })
+map("x", "<S-Tab>", "<gv", { desc = "Outdent Selection" })
