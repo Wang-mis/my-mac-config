@@ -1,8 +1,8 @@
 # macOS 终端开发环境配置
 
 本文档描述一套以 Ghostty、Zsh、Zellij、Yazi 和 LazyVim 为核心的 macOS
-开发环境。Neovim 配置由本仓库管理；其他工具的活动配置仍位于用户目录，
-并在本文中记录其行为。
+开发环境。Neovim 配置与 Zellij 配置副本由本仓库管理；其他工具的活动配置
+仍位于用户目录，并在本文中记录其行为。
 
 ## 配置架构
 
@@ -60,8 +60,13 @@ Ghostty 与 Zellij 有意保留两层能力：Ghostty 处理临时 GUI 窗口，
 
 ### Zellij 命令入口
 
+可复用配置保存在 `zsh/zellij.zsh`，包含以下命令和会话名补全。
+在 `.zshrc` 中于 Oh My Zsh 或 `compinit` 初始化之后加载该文件即可使用；
+仓库 README 提供具体加载方式。
+
 - `za`：以当前目录名连接或创建会话。
 - `za <name>`：连接或创建指定会话。
+- `za <Tab>`：动态补全已有会话名，支持前缀匹配；仍可手动输入新会话名。
 - `zl`：列出会话。
 - 已处于 Zellij 内时，`za` 会拒绝创建嵌套会话。
 
@@ -69,7 +74,13 @@ Ghostty 与 Zellij 有意保留两层能力：Ghostty 处理临时 GUI 窗口，
 
 活动配置：`~/.config/zellij/config.kdl`
 
+仓库副本：`zellij/config.kdl`
+
 - 使用内置 `kanagawa` 主题。
+- 使用默认布局，显示顶部 Tab 栏和底部快捷键状态栏。布局设置只对新建
+  会话生效。
+- 默认隐藏窗格边框，效果等同于在显示边框时按 `Ctrl+P` 后按 `z`；顶部
+  Tab 栏和底部快捷键状态栏不受影响。
 - 默认进入 Normal 模式，保留完整的模式化键位；Scroll 与 Move 模式入口
   分别使用 `Alt+S` 与 `Alt+M`，避免占用 Neovim 的 `Ctrl+S` 与 `Ctrl+H`。
 - 强制关闭终端时执行 detach，不结束会话。
@@ -96,18 +107,48 @@ Ghostty 与 Zellij 有意保留两层能力：Ghostty 处理临时 GUI 窗口，
 
 ### 基础行为
 
+- 编辑文件时显示绝对行号，默认关闭相对行号。
+
 - 以 LazyVim v8 和 lazy.nvim 为基础。
 - 主题为 Kanagawa Wave，背景不透明，启用斜体注释和 undercurl。
 - 插件更新检查开启但不弹出通知。
+- 上方 Buffer 标签栏在有文件 Buffer 时显示（包括只打开一个文件），
+  关闭最后一个文件后隐藏。Codex 终端、文件栏和空白未命名 Buffer 不计入；
+  未命名但已修改的 Buffer 计入，避免隐藏尚未保存的编辑。
+- 左侧 Snacks 文件栏默认隐藏顶部输入框；双空格文件搜索面板不受影响。
+  如需在文件栏内筛选，可以按 `i` 临时显示输入框。
 - `lazy-lock.json` 锁定插件 commit，保证环境可复现。
 - Markdown 和 MDX 不运行 markdownlint，关闭英文拼写检查，保存时也不自动格式化；
   仍保留 marksman、渲染、预览与手动格式化。
 - 提供 VS Code 风格的 `Cmd`、功能键与 `Alt` 快捷键别名，同时保留 LazyVim
   原生 Leader 键体系。
+- `Cmd+Z` 撤销，`Cmd+Shift+Z` 重做；Insert 模式保持输入状态，Visual/Select
+  模式退出选区后操作。Ghostty 将这两个键传入终端，不再执行自身的撤销/重做。
 - 使用 tabout.nvim 跳出括号、引号和标签；Blink.cmp 先处理 snippet 与 AI
   建议，再将 Tab 交给 TabOut，无法跳出时执行普通缩进。
 - Insert 模式支持在当前行上方或下方插入新行，以及移动到物理行首、行尾。
 - Visual 模式使用 `Tab` 与 `Shift+Tab` 缩进或取消缩进，并保持当前选区。
+- Normal 模式使用 `Ctrl+Cmd+H/L` 将分隔线左移/右移 2 列，
+  `Ctrl+Cmd+J/K` 将分隔线下移/上移 2 行。优先移动当前窗口右侧/下侧的
+  分隔线，没有时移动左侧/上侧。Snacks 文件栏调整其分屏容器；
+  无对应分屏或处于其他浮动窗口时不操作。
+  移动受窗口最小尺寸限制，焦点保持不变。Ghostty 显式传递这些组合键，
+  `Ctrl+方向键` 留给 macOS。
+
+### Codex
+
+- 使用已有的 Snacks 终端，在 Neovim 右侧打开 Codex CLI，占窗口宽度约 45%。
+- `<Space>ac` 或 `:Codex` 在当前项目根目录打开/隐藏 Codex；相同项目复用
+  仍在运行的终端。隐藏面板不结束进程，关闭 Neovim 会结束内嵌终端。
+- `<Space>ar` 或 `:CodexResume` 在独立终端中打开 `codex resume` 历史会话
+  选择器；它不会替换另一个正在运行的 Codex 面板。
+- 进入面板后直接输入请求。快速连按两次 `Esc` 返回终端 Normal 模式，
+  再按 `q` 隐藏面板；按 `i` 恢复向 Codex 输入。
+- 依赖 PATH 中的 `codex`。首次使用前在 Shell 中运行 `codex login`。
+  沿用 Codex 已有的模型、认证和权限配置，不添加自动批准或绕过沙箱参数。
+- 这是交互式 CLI 集成，不是行内代码补全。不会自动发送选区或当前文件，
+  也不会自动保存文件；让 Codex 处理代码前请保存所需修改，并检查其生成的差异。
+- 官方说明：[Codex CLI](https://learn.chatgpt.com/docs/codex/cli)。
 
 ### 语言支持
 

@@ -4,12 +4,36 @@
 
 local map = vim.keymap.set
 
+-- Leave Ctrl+arrows to macOS Mission Control; use Ctrl+Cmd for resizing.
+for _, key in ipairs({ "<C-Up>", "<C-Down>", "<C-Left>", "<C-Right>" }) do
+  pcall(vim.keymap.del, "n", key)
+end
+local resize = require("config.window_resize")
+map("n", "<C-D-h>", function()
+  resize.move("horizontal", -2)
+end, { desc = "Move Separator Left" })
+map("n", "<C-D-l>", function()
+  resize.move("horizontal", 2)
+end, { desc = "Move Separator Right" })
+map("n", "<C-D-j>", function()
+  resize.move("vertical", 2)
+end, { desc = "Move Separator Down" })
+map("n", "<C-D-k>", function()
+  resize.move("vertical", -2)
+end, { desc = "Move Separator Up" })
+
 -- VS Code-style aliases. LazyVim's native leader mappings remain available.
 map("n", "<D-p>", "<leader><space>", { remap = true, desc = "Find Files" })
 map("n", "<D-S-p>", "<leader>sC", { remap = true, desc = "Command Palette" })
 map("n", "<D-S-f>", "<leader>sg", { remap = true, desc = "Search in Files" })
 map("n", "<D-b>", "<leader>e", { remap = true, desc = "Toggle Explorer" })
 map({ "n", "i", "x", "s" }, "<D-s>", "<cmd>write<cr>", { desc = "Save File" })
+map("n", "<D-z>", "u", { desc = "Undo" })
+map("n", "<D-S-z>", "<C-r>", { desc = "Redo" })
+map("i", "<D-z>", "<C-g>u<C-o>u", { desc = "Undo" })
+map("i", "<D-S-z>", "<C-g>u<C-o><C-r>", { desc = "Redo" })
+map({ "x", "s" }, "<D-z>", "<Esc>u", { desc = "Undo" })
+map({ "x", "s" }, "<D-S-z>", "<Esc><C-r>", { desc = "Redo" })
 map("n", "<D-/>", "gcc", { remap = true, desc = "Toggle Comment" })
 map("x", "<D-/>", "gc", { remap = true, desc = "Toggle Comment" })
 map({ "n", "x" }, "<D-.>", "<leader>ca", { remap = true, desc = "Code Action" })

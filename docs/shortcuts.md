@@ -40,6 +40,7 @@
 | `y [path]` | 启动 Yazi，退出后进入最后所在目录 |
 | `za` | 以当前目录名连接或创建 Zellij 会话 |
 | `za <name>` | 连接或创建指定 Zellij 会话 |
+| `za ` 后按 `Tab` | 动态补全 Zellij 会话名，也支持先输入名称前缀 |
 | `zl` | 列出 Zellij 会话 |
 | `nvm ...` | 首次调用时加载 nvm，然后执行命令 |
 | `Ctrl+R` | fzf 模糊搜索命令历史 |
@@ -47,6 +48,9 @@
 | `Alt+C` | fzf 搜索目录并进入 |
 
 ## Zellij
+
+Zellij 使用默认布局，顶部显示 Tab 栏，底部显示当前模式可用的快捷键。
+布局在创建会话时确定，修改配置不会重绘已经存在的会话。
 
 ### 模式入口
 
@@ -62,6 +66,8 @@
 | `Ctrl+G` | 锁定/解锁键位 |
 | `Ctrl+Q` | 退出 Zellij |
 | `Esc` | 返回 Normal 模式 |
+
+窗格边框默认隐藏。按 `Ctrl+P` 后按 `z` 可以临时显示或再次隐藏边框。
 
 ### 直接操作
 
@@ -154,6 +160,8 @@
 | 快捷键 | 操作 |
 | --- | --- |
 | `Cmd+S` | VS Code 风格：保存文件 |
+| `Cmd+Z` / `Cmd+Shift+Z` | 撤销/重做；支持 Normal、Insert、Visual、Select |
+| Normal `u` / `Ctrl+R` | Neovim 原生撤销/重做 |
 | `Cmd+/` | VS Code 风格：注释或取消注释 |
 | `Alt+Z` | VS Code 风格：切换自动换行 |
 | `Shift+Alt+↑/↓` | VS Code 风格：向上/向下复制当前行或选区 |
@@ -171,13 +179,18 @@
 | `<Space>bd` | 删除当前 Buffer |
 | `<Space>bo` | 删除其他 Buffer |
 | `Ctrl+H/J/K/L` | 切换 Neovim 窗口 |
-| `Ctrl+方向键` | 调整窗口尺寸 |
+| Normal `Ctrl+Cmd+H/L` | 将竖向分隔线左移/右移 2 列 |
+| Normal `Ctrl+Cmd+J/K` | 将横向分隔线下移/上移 2 行 |
 | `<Space>-` | 下方分割窗口 |
 | `<Space>\|` | 右侧分割窗口 |
 | `<Space>wd` | 关闭窗口 |
 | `Alt+J/K` | 下移/上移当前行或选区 |
 | `<Space>cf` | 手动格式化当前文件或选区 |
 | `<Space>uf` | 切换全局保存时格式化 |
+
+窗口调整优先移动当前窗口右侧/下侧的分隔线，没有时移动左侧/上侧。
+对应方向没有分屏时不操作；窗口达到最小尺寸后停止移动。
+Snacks 文件栏会调整整个侧栏容器，其他浮动窗口不参与。
 
 ### LSP 与诊断
 
@@ -212,6 +225,9 @@
 
 | 快捷键 | 操作 |
 | --- | --- |
+| `<Space>ac` / `:Codex` | 打开/隐藏当前项目的 Codex 右侧面板 |
+| `<Space>ar` / `:CodexResume` | 打开/隐藏 Codex 历史会话选择器面板 |
+| Codex 面板快速连按两次 `Esc`，再按 `q` | 返回终端 Normal 模式并隐藏面板 |
 | `]h` / `[h` | 下一个/上一个 Git hunk |
 | `<Space>ghs` | 暂存 hunk |
 | `<Space>ghr` | 重置 hunk |
